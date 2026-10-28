@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    volumes:
-      - ./backend:/var/www/html
     working_dir: /var/www/html
     environment:
       APP_ENV: local
