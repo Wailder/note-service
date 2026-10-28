@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 WORKDIR /var/www/html
 
 COPY backend/composer.json backend/composer.lock ./
-RUN composer install --no-interaction --no-scripts --no-autoloader --prefer-dist || true
+RUN composer install --no-interaction --no-scripts --no-autoloader --prefer-dist
 
 COPY backend/ .
 

@@ -20,4 +20,6 @@ chmod -R ug+rwX database storage bootstrap/cache
 
 php artisan migrate --force
 
+php artisan l5-swagger:generate
+
 exec php-fpm
