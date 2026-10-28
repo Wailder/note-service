@@ -84,3 +84,10 @@ docker-compose.yml
 docker run --rm -v "$PWD":/project -w /project/frontend node:22-alpine \
   sh -c "npm install && npm run build"
 ```
+
+## Как это устроено
+
+- `app` (php-fpm) собирается из образа `php:8.3-fpm-alpine` с кодом и `vendor/` внутри. Bind-mount кода **не используется** — это гарантирует, что контейнер воспроизводит именно то, что в git, а не локальный `vendor/`.
+- `nginx` монтирует `./backend` только чтобы отдавать статику (`public/app/`) и `index.php`. PHP-запросы проксируются на `app:9000`.
+- При старте `app` `docker-entrypoint.sh` идемпотентно: создаёт `.env`/`APP_KEY`, файл SQLite, применяет миграции, генерирует Swagger.
+- Если нужно поменять код — `docker compose up -d --build` (пересборка образа), либо для активной разработки можно временно вернуть bind-mount и поставить `composer install` внутрь.
