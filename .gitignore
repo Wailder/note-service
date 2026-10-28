@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Node (для фронта)
+node_modules/
+frontend/dist/
+
+# Env
+.env
+.env.local
+
+# SQLite (локальная база — не в git)
+backend/database/database.sqlite
