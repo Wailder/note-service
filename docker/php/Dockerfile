@@ -1,12 +1,12 @@
 FROM php:8.3-fpm-alpine
 
-RUN apk add --no-cache \
+RUN timeout 300 apk add --no-cache \
         git \
         unzip \
         sqlite \
         sqlite-dev \
     && docker-php-ext-install pdo pdo_sqlite \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    && curl -sS --max-time 60 https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
 

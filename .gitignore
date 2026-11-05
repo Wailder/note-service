@@ -16,4 +16,4 @@ frontend/dist/
 .env.local
 
 # SQLite (локальная база — не в git)
-backend/database/database.sqlite
+backend/database/database.sqlitebuild.log
